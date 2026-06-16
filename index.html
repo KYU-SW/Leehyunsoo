@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hanseob Kim | DXP Lab</title>
+    <title>Leehyunsoo</title>
     <!-- 폰트어썸 (아이콘) 무료 CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- 구글 폰트 (Pretendard 대체용 널리 쓰이는 Noto Sans KR) -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Pretendard 폰트 적용 (가장 세련된 한글 폰트) -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
     
     <style>
         :root {
-            /* 건양대학교 메인 그린 컬러 톤 적용 */
-            --primary-color: #005a3c; 
-            --primary-light: #007a52;
-            --primary-dark: #003d29;
-            --text-color: #333333;
-            --text-light: #666666;
-            --bg-color: #f4f7f6;
+            /* 더 깊이감 있는 프리미엄 컬러 팔레트 */
+            --primary-color: #8b5cf6;
+            --primary-light: #a78bfa;
+            --primary-dark: #6d28d9;
+            --text-color: #f8fafc;
+            --text-light: #cbd5e1;
+            --bg-color: #030712;
+            --card-bg: rgba(30, 41, 59, 0.4);
             --white: #ffffff;
-            --transition: all 0.3s ease;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
         }
 
         * {
@@ -28,24 +30,35 @@
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Noto Sans KR', sans-serif;
+            font-family: 'Pretendard', sans-serif;
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--bg-color);
-            padding-top: 70px; /* 네비게이션 바 높이만큼 여백 */
+            /* 배경에 은은한 조명 효과 추가 */
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+
+        h1, h2, h3 {
+            letter-spacing: -0.02em;
         }
 
         /* Top Navigation Bar */
         .navbar {
             position: fixed;
             top: 0;
-            left: 0;
             width: 100%;
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: rgba(3, 7, 18, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
-            justify-content: space-between;
             align-items: center;
             padding: 1rem 5%;
             z-index: 1000;
@@ -58,40 +71,16 @@
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 10px;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 20px;
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover {
-            background-color: var(--bg-color);
-            color: var(--primary-color);
-        }
-
-        .nav-links a.active {
-            background-color: var(--primary-color);
-            color: var(--white);
+            gap: 12px;
+            letter-spacing: 1px;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            padding: 10rem 2rem 5rem;
             color: var(--white);
-            padding: 5rem 2rem;
             text-align: center;
+            position: relative;
         }
 
         .hero h1 {
@@ -99,32 +88,302 @@
             margin-bottom: 1rem;
         }
 
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 8px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.3);
+        }
+
         .hero .role {
             font-size: 1.2rem;
             opacity: 0.9;
             margin-bottom: 2rem;
+            font-weight: 300;
         }
 
         .container {
-            max-width: 1100px;
-            margin: -3rem auto 3rem;
+            max-width: 1200px;
+            margin: 0 auto 5rem;
             padding: 0 20px;
             position: relative;
         }
 
         /* About Section */
         .about-card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 2.5rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 32px;
+            padding: 3rem;
+            box-shadow: var(--shadow);
             margin-bottom: 3rem;
-            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: left;
         }
 
         .about-card h2 {
             color: var(--primary-color);
             margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        /* Vision Section */
+        .vision-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border-radius: 32px;
+            padding: 4rem 2.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .vision-card h2 {
+            color: var(--primary-color);
+            margin-bottom: 2.5rem;
+        }
+
+        .vision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+
+        .vision-item {
+            padding: 2rem;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        .vision-item:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary-light);
+        }
+
+        .vision-item h3 {
+            color: var(--primary-light);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .vision-item p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Courses Section */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .course-item {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: var(--transition);
+        }
+
+        .course-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-light);
+        }
+
+        .course-item span {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .course-item i {
+            font-size: 2rem;
+            color: var(--primary-light);
+            opacity: 0.8;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-light);
+        }
+
+        .skill-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-badge {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-color);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Photography Section */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-auto-rows: 180px;
+            gap: 1rem;
+            margin-bottom: 4rem;
+        }
+
+        .photo-item {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .photo-item:hover img {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .photo-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
+        }
+
+        /* Activities Section */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .activity-item {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: var(--transition);
+        }
+
+        .activity-item:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-light);
+        }
+
+        .activity-item i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.2rem;
+        }
+
+        .activity-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .activity-item p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        /* Projects Section Style */
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 4rem;
+            display: grid;
+            /* 세로 영상을 위해 왼쪽 열의 너비를 320px로 고정하고 나머지를 설명칸으로 설정 */
+            grid-template-columns: 320px 1fr;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .video-container {
+            background: #020617;
+            height: 550px; /* 세로 영상의 비율에 맞춰 높이 설정 */
+            display: flex;
+        }
+
+        .project-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .project-info .project-role {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 992px) {
+            .project-card { grid-template-columns: 1fr; }
+            .video-container { min-height: 300px; }
         }
 
         /* Cards Layout (CSS Grid) */
@@ -142,16 +401,17 @@
         }
 
         .card {
-            background: var(--white);
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: var(--shadow);
             transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
         .card-img {
@@ -183,10 +443,12 @@
         /* Contact Section */
         .contact-section {
             text-align: center;
-            background: var(--white);
-            padding: 3rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            background: var(--card-bg);
+            padding: 5rem 3rem;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            margin-top: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .contact-links {
@@ -194,17 +456,19 @@
             justify-content: center;
             gap: 1.5rem;
             margin-top: 1.5rem;
+            flex-wrap: wrap;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 24px;
-            border-radius: 30px;
+            padding: 14px 28px;
+            border-radius: 50px;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             transition: var(--transition);
+            font-size: 0.95rem;
         }
 
         .btn-outline {
@@ -218,8 +482,8 @@
         }
 
         .btn-fill {
-            background: var(--primary-color);
-            color: var(--white);
+            background: var(--white);
+            color: var(--bg-color);
         }
 
         .btn-fill:hover {
@@ -231,7 +495,7 @@
             padding: 2rem 0;
             color: var(--text-light);
             font-size: 0.9rem;
-            border-top: 1px solid #e2e8f0;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
     </style>
 </head>
@@ -240,87 +504,153 @@
 <!-- Top Navigation -->
 <nav class="navbar">
     <a href="#" class="nav-logo">
-        <i class="fa-solid fa-vr-cardboard"></i> DXP Lab
+        <i class="fa-solid fa-vr-cardboard"></i> 현수의 포트폴리오
     </a>
-    <ul class="nav-links">
-        <li><a href="#" class="active"><i class="fa-solid fa-wand-magic-sparkles"></i> 현재 페이지 (Modern)</a></li>
-        <!-- 이전 페이지 파일명을 old.html 혹은 previous.html 로 맞추어 학생들에게 링크 이동을 시연하시면 됩니다 -->
-        <li><a href="index_initial.html"><i class="fa-solid fa-clock-rotate-left"></i> 이전 페이지 (Basic)</a></li>
-    </ul>
 </nav>
 
 <!-- Hero Section -->
 <header class="hero">
-    <h1>Hanseob Kim</h1>
-    <p class="role">Professor & Director of DXP Lab</p>
+    <img src="내 얼굴.jpg" alt="이현수 프로필" class="profile-img">
+    <h1>이현수</h1>
+    <p class="role">안녕하세요</p>
 </header>
 
 <main class="container">
     <!-- About Section -->
     <section class="about-card">
-        <h2><i class="fa-solid fa-user-tie"></i> About Me</h2>
+        <h2><i class="fa-solid fa-user-tie"></i>About Me</h2>
         <p>
-            인간과 컴퓨터의 상호작용(HCI)을 연구하며, 가상현실(VR) 및 증강현실(AR) 환경에서의 
-            사용자 경험 개선과 <strong>사이버멀미(Cybersickness) 저감 기술</strong>에 집중하고 있습니다. 
-            데이터 전처리 및 분석 역량을 바탕으로 국방(National Defense) 및 의료 등 다양한 도메인을 위한 초실감형 몰입 기술을 탐구합니다.
+        안녕하십니까 태권도 3단, 구구단 3단, 열정과 성실의 인간 <strong>이현수</strong>입니다. <br>
+        저의 강점은 모든 약점을 강점으로 승화시키는 무한한 잠재력과 실행력에 있습니다.
         </p>
     </section>
 
-    <h2 class="section-title">Research Interests</h2>
-    
-    <!-- Cards Section -->
-    <section class="card-grid">
-        <!-- Card 1 -->
-        <article class="card">
-            <img src="https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?auto=format&fit=crop&w=600&q=80" alt="VR Headset" class="card-img">
-            <div class="card-content">
-                <i class="fa-solid fa-shield-halved"></i>
-                <h3>XR for National Defense</h3>
-                <p>국방 훈련을 위한 초실감형 메타버스 인터페이스 연구 및 인공지능 기반 인간 검증 데이터셋 구축.</p>
+    <!-- Vision Section -->
+    <section class="vision-card">
+        <h2><i class="fa-solid fa-lightbulb"></i> My Vision</h2>
+        <div class="vision-grid">
+            <div class="vision-item">
+                <h3><i class="fa-solid fa-bullseye"></i> 진로 목표</h3>
+                <p>교수님께서 주신 과제보다 더 재미있는 결과물을 만들어 성적 대신 교수님의 가산점을 쟁취하는것이 진로목표입니다 물론 최종목표는 세계정복</p>
             </div>
-        </article>
-
-        <!-- Card 2 -->
-        <article class="card">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="Data Analysis" class="card-content-img card-img">
-            <div class="card-content">
-                <i class="fa-solid fa-eye"></i>
-                <h3>Cybersickness Mitigation</h3>
-                <p>시선 추적(Eye-tracking) 및 시각/햅틱 피드백을 활용한 자율주행 및 VR 환경 내 사이버멀미 분석 및 저감 솔루션.</p>
+            <div class="vision-item">
+                <h3><i class="fa-solid fa-star"></i> 되고 싶은 전문가상</h3>
+                <p>교수님의 가르침을 기반으로 과제를 하지않으면 숨을 쉬지 못하는 과제 중독자, 맡겨만 주신다면 제 통장 잔고보다 더 눈부신 퀄리티를 보여드리겠습니다</p>
             </div>
-        </article>
-
-        <!-- Card 3 -->
-        <article class="card">
-            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80" alt="Medical Technology" class="card-img">
-            <div class="card-content">
-                <i class="fa-solid fa-bed-pulse"></i>
-                <h3>Digital Therapeutics</h3>
-                <p>병상 환자(Bedridden Patients) 및 교통약자를 위한 VR 기반 치료/편의 기술 및 상호작용 인터페이스 설계.</p>
-            </div>
-        </article>
+        </div>
     </section>
+
+    <h2 class="section-title">Current Courses</h2>
+    <div class="courses-grid">
+        <div class="course-item">
+            <i class="fa-solid fa-code"></i>
+            <span>메타버스 프로그래밍</span>
+        </div>
+        <div class="course-item">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <span>XR 문화지형도</span>
+        </div>
+        <div class="course-item">
+            <i class="fa-solid fa-book-open"></i>
+            <span>실감미디어 콘텐츠 개론</span>
+        </div>
+    </div>
+
+    <!-- Skills Section -->
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+        <div class="skill-card">
+            <h3><i class="fa-solid fa-clapperboard"></i> 디자인/영상</h3>
+            <div class="skill-list">
+                <span class="skill-badge">애프터 이펙트</span>
+                <span class="skill-badge">프리미어 프로</span>
+                <span class="skill-badge">포토샵</span>
+            </div>
+        </div>
+        <div class="skill-card">
+            <h3><i class="fa-solid fa-laptop-code"></i> 코딩</h3>
+            <div class="skill-list">
+                <span class="skill-badge">C#</span>
+                <span class="skill-badge">JavaScript</span>
+                <span class="skill-badge">HTML5 / CSS3</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Activities Section -->
+    <h2 class="section-title">Activities</h2>
+    <div class="activities-grid">
+        <div class="activity-item">
+            <i class="fa-solid fa-guitar"></i>
+            <h3>RIP (밴드 동아리)</h3>
+            <p>일렉기타 세션 담당</p>
+        </div>
+        <div class="activity-item">
+            <i class="fa-solid fa-video"></i>
+            <h3>헤니스 (힙합 동아리)</h3>
+            <p>영상 촬영 및 기록 담당</p>
+        </div>
+        <div class="activity-item">
+            <i class="fa-solid fa-person-running"></i>
+            <h3>스매시 (배드민턴 동아리)</h3>
+            <p>정기 훈련 및 활동</p>
+        </div>
+        <div class="activity-item">
+            <i class="fa-solid fa-bullhorn"></i>
+            <h3>건양메이트 (홍보팀)</h3>
+            <p>국방XR학부 소속 학교 홍보 활동</p>
+        </div>
+        <div class="activity-item">
+            <i class="fa-solid fa-film"></i>
+            <h3>애드파워 (학과 동아리)</h3>
+            <p>뮤직비디오, 광고 촬영 담당</p>
+        </div>
+    </div>
+
+    <!-- Photography Section -->
+    <h2 class="section-title">Photography</h2>
+    <div class="photo-grid">
+        <div class="photo-item"><img src="_DSC1748.JPG" alt="대표 작품"></div>
+        <div class="photo-item"><img src="DSC01525.jpg" alt="작품 2"></div>
+        <div class="photo-item"><img src="DSC01536.jpg" alt="작품 3"></div>
+        <div class="photo-item"><img src="DSC01596.jpg" alt="작품 4"></div>
+    </div>
+
+    <!-- Projects Section -->
+    <h2 class="section-title">Projects</h2>
+    <div class="project-card">
+        <div class="video-container">
+            <video src="Comp 1_1.mp4" autoplay loop muted playsinline class="project-video"></video>
+        </div>
+        <div class="project-info">
+            <p class="project-role"><i class="fa-solid fa-clapperboard"></i> Role: Lead Motion Designer</p>
+            <h3>국방XR학부 로고 디자인</h3>
+            <p>
+                국방 XR 학부의 정체성을 담은 로고 모션그래픽 프로젝트입니다. 
+            </p>
+        </div>
+    </div>
 
     <!-- Contact Section -->
     <section class="contact-section">
         <h2>Let's Connect</h2>
-        <p style="margin-top: 10px; color: var(--text-light);">연구 협력이나 DXP 연구실에 관심이 있으시다면 언제든 연락주세요.</p>
+        <p style="margin-top: 10px; color: rgba(255,255,255,0.7);">새로운 아이디어와 협업은 언제나 환영입니다.</p>
         <div class="contact-links">
-            <a href="mailto:example@korea.ac.kr" class="btn btn-fill">
+            <a href="mailto:lihean494@gmail.com" class="btn btn-fill">
                 <i class="fa-solid fa-envelope"></i> Email Me
             </a>
-            <a href="https://github.com" class="btn btn-outline" target="_blank">
+            <a href="https://github.com/KYU-SW/Leehyunsoo" class="btn btn-outline" target="_blank">
                 <i class="fa-brands fa-github"></i> GitHub
             </a>
-            <a href="#" class="btn btn-outline">
-                <i class="fa-solid fa-globe"></i> Lab Website
+            <a href="https://www.instagram.com/lee_hs0819/" class="btn btn-outline" target="_blank">
+                <i class="fa-brands fa-instagram"></i> Instagram
             </a>
         </div>
     </section>
 </main>
 
 <footer>
-    <p>&copy; 2026 Hanseob Kim & DXP Lab. All rights reserved.</p>
+    <p>&copy; 2024 이현수 & DXP Lab. All rights reserved.</p>
 </footer>
 
 </body>
